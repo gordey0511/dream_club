@@ -71,8 +71,8 @@ class ProductInOrder(models.Model):
 
 @disable_for_loaddata
 def product_in_order_post_save(sender, instance, created, **kwargs):
-    order_2 = instance.order
-    all_products_in_order = ProductInOrder.objects.filter(order=order_2, is_active=True)
+    order = instance.order
+    all_products_in_order = ProductInOrder.objects.filter(order=order, is_active=True)
 
     order_total_price = 0
     for item in all_products_in_order:
